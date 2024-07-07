@@ -4566,7 +4566,7 @@ then :
   LIBS="-ldb $LIBS"
 
 else $as_nop
-  as_fn_error $? "*** libdb-4.8 not found" "$LINENO" 5
+  as_fn_error $? "*** libdb not found" "$LINENO" 5
 fi
 
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for SHA256 in -lcrypto" >&5
