@@ -1,0 +1,13 @@
+*~
+*.o
+src/cwallet
+src/cwallet-gui
+*.in
+Makefile
+src/Makefile
+autom4te.cache
+aclocal.m4
+compile
+depcomp
+install-sh
+missing

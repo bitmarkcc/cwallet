@@ -91,7 +91,7 @@ int qrencode (const char * const bc_address, const char * const bc_privkey, cons
     }
   }
   
-  strcpy(cmd,"echo '\\documentclass{article}\\usepackage{graphicx}\\usepackage[top=1in, bottom=1in, left=0in, right=0in]{geometry}\\usepackage{multicol}\\begin{document}\\pagenumbering{gobble}");
+  strcpy(cmd,"/usr/bin/echo '\\documentclass{article}\\usepackage{graphicx}\\usepackage[top=1in, bottom=1in, left=0in, right=0in]{geometry}\\usepackage{multicol}\\begin{document}\\pagenumbering{gobble}");
   if (sflag == 1) {
     strcat(cmd,"\\newpage\\begin{multicols}{2}{\\raggedleft\\texttt{~\\\\");
     ret = fill_latex_lines(cmd+strlen(cmd),bc_privkey,6,0);

@@ -9,6 +9,7 @@ Dependencies:
 - libssl-dev
 - qrencode
 - pdflatex (texlive)
+- echo command at /usr/bin/echo
 
 To compile Cwallet:
 
