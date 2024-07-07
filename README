@@ -10,9 +10,11 @@ Dependencies:
 - qrencode
 - pdflatex (texlive)
 - echo command at /usr/bin/echo
+- autoconf
 
 To compile Cwallet:
 
+./autogen.sh
 ./configure
 make
 
