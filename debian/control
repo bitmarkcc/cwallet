@@ -1,0 +1,15 @@
+Source: cwallet-bitmark
+Maintainer: Andrew Karamaoun <ak@xmark.cc>
+Section: misc
+Priority: optional
+Standards-Version: 4.6.2
+Build-Depends: debhelper-compat (= 13),
+	       libgtk2.0-dev,
+	       libdb-dev,
+	       libssl-dev
+
+Package: cwallet-bitmark
+Architecture: any
+Depends: qrencode,
+	 texlive
+Description: paper wallet creator

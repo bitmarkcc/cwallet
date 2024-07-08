@@ -5,7 +5,7 @@ This program will output each address and private key in Bitcoin’s base-58 for
 Dependencies:
 
 - libgtk2.0-dev (For gui version)
-- libdb4.8-dev (Only for the wallet.dat reading feature. You may need to manually change this if your wallet is created with a different version)
+- libdb-dev (Only for the wallet.dat reading feature. Make sure it's the same version as used for the wallet)
 - libssl-dev
 - qrencode
 - pdflatex (texlive)
