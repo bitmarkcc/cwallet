@@ -1,4 +1,4 @@
-AC_INIT([cwallet], [1.0], [bug-automake@gnu.org])
+AC_INIT([cwallet], [1.1], [bug-automake@gnu.org])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_PROG_CC
 AM_PROG_CC_C_O
