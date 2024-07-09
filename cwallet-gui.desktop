@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Cwallet
+Exec=cwallet-gui
+Icon=cwallet-gui
+Terminal=false
+Type=Application
+Categories=Utility;
+Comment=Paper wallet creator
