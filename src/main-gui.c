@@ -439,15 +439,14 @@ int gui_status (int argc, char ** argv, Data * data) {
 
   gchar * curpath = data->curpath;
 
-  gchar * str = g_malloc(strlen(maindir)+50);
+  gchar * str = g_malloc(200);
 
   window = (GtkWindow *)gtk_window_new(GTK_WINDOW_TOPLEVEL);
   gtk_window_set_position(GTK_WINDOW(window),GTK_WIN_POS_CENTER);
   gtk_window_set_default_size(GTK_WINDOW(window),500,400);
   gtk_window_set_title(GTK_WINDOW(window),"Cwallet");
 
-  strcpy(str,maindir);
-  strcat(str,"/icon.png");
+  strcpy(str,"/usr/share/pixmaps/cwallet-gui.png");
 
   gtk_window_set_icon_from_file(GTK_WINDOW(window),str,0);
   
@@ -459,8 +458,7 @@ int gui_status (int argc, char ** argv, Data * data) {
   table2 = (GtkTable *)gtk_table_new(3,3,FALSE);
   gtk_table_attach(GTK_TABLE(table1),(GtkWidget *)table2,1,2,0,1,GTK_EXPAND|GTK_FILL,GTK_EXPAND|GTK_FILL,0,0);
 
-  strcpy(str,maindir);
-  strcat(str,"/logo.png");
+  strcpy(str,"/usr/share/images/cwallet-logo.png");
 
   logo = (GtkImage *)gtk_image_new_from_file(str);
   gtk_table_attach(GTK_TABLE(table2),(GtkWidget *)logo,1,2,1,2,GTK_EXPAND|GTK_FILL,GTK_EXPAND|GTK_FILL,5,5);
