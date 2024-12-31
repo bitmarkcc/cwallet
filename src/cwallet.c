@@ -188,7 +188,7 @@ int indexof (const char c, const char * str) {
   return(-1);
 }
 
-int generate_key (char ** const result, const unsigned char qflag, const unsigned char rflag, const unsigned char eflag, const unsigned char uflag, const unsigned char sflag, const char * dvalue, const char * ovalue, const char * tvalue, const char * pvalue, const char * kvalue) {
+int generate_key (char ** const result, const unsigned char qflag, const unsigned char rflag, const unsigned char eflag, const unsigned char uflag, const unsigned char sflag, const char * dvalue, const char * ovalue, const char * tvalue, const char * Tvalue, const char * pvalue, const char * kvalue) {
 
   int ret = 0;
   
@@ -199,6 +199,13 @@ int generate_key (char ** const result, const unsigned char qflag, const unsigne
   }
   else {
     tvalue_uchar=(unsigned char)(atoi(tvalue));
+  }
+  unsigned char Tvalue_uchar = 0;
+  if (Tvalue==0) {
+      Tvalue_uchar=128;
+  }
+  else {
+      Tvalue_uchar=(unsigned char)(atoi(Tvalue));
   }
   if (uflag==1) {
     publen = 65;
@@ -303,7 +310,7 @@ int generate_key (char ** const result, const unsigned char qflag, const unsigne
     char ** privkey_bc = (char **)malloc(sizeof(char *)*2);
     for (i=0; i<2; i++) {
       privkey_bc[i] = (char *)malloc(53);
-      ret = privkey_to_bc_format(privkey_bc[i],privkey,privlen,0,0);
+      ret = privkey_to_bc_format(privkey_bc[i],privkey,privlen,0,0,Tvalue_uchar);
       if (ret==-1) {
 	strcpy(result[0],"Cannot convert private key to the Bitcoin format\n");
 	return(1);
@@ -471,7 +478,7 @@ int generate_key (char ** const result, const unsigned char qflag, const unsigne
     char ** privkey_bc = (char **)malloc(sizeof(char *)*2);
     for (i=0; i<2; i++) {
       privkey_bc[i] = (char *)malloc(53);
-      ret = privkey_to_bc_format(privkey_bc[i],privkey_2,privlen,0,0);
+      ret = privkey_to_bc_format(privkey_bc[i],privkey_2,privlen,0,0,Tvalue_uchar);
       if (ret==-1) {
 	strcpy(result[0],"Cannot convert private key to the Bitcoin format\n");
 	return(1);
@@ -966,7 +973,7 @@ int subtract_uchars (unsigned char * const result, const unsigned char * c1, con
   return(0);
 }
 
-int privkey_to_bc_format (char * const result, const unsigned char * key, size_t n, const unsigned char * pubkey, const size_t m) {
+int privkey_to_bc_format (char * const result, const unsigned char * key, size_t n, const unsigned char * pubkey, const size_t m, const unsigned char type) {
 
   int ret = 0;
   int i = 0;
@@ -992,7 +999,7 @@ int privkey_to_bc_format (char * const result, const unsigned char * key, size_t
   }
 
   unsigned char * keyext = malloc(n_ext);
-  *keyext = 128;
+  *keyext = type;
   memcpy(keyext+1,key,n);
   if (m != 65) {
     *(keyext+n+1) = 1;

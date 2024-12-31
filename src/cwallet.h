@@ -47,11 +47,12 @@ int indexof (const char c, const char * str);
    dvalue: the output directory
    ovalue: the output file name
    tvalue: the type of address, i.e. the address prefix code (0 for Bitcoin, 52 for Namecoin, ...)
+   Tvalue: the type of private key, i.e. the prefix code (128 for Bitcoin, 213 for Bitmark, ...)
    pvalue: the passphrase
    kvalue: the private key in the standard Bitcoin base 58 format
    result: The result the will contain the address and private key, or the error message.
    Return 0 if successful. */
-int generate_key (char ** const result, const unsigned char qflag, const unsigned char rflag, const unsigned char eflag, const unsigned char uflag, const unsigned char sflag, const char * const dvalue, const char * const ovalue, const char * const tvalue, const char * const pvalue, const char * const kvalue);
+int generate_key (char ** const result, const unsigned char qflag, const unsigned char rflag, const unsigned char eflag, const unsigned char uflag, const unsigned char sflag, const char * const dvalue, const char * const ovalue, const char * const tvalue, const char * Tvalue, const char * const pvalue, const char * const kvalue);
 
 /* Get the public key corresponding to priv, and put the public key in result.
    result: The pointer to the unsigned char array that is to contain the public key
@@ -119,8 +120,9 @@ int subtract_uchars (unsigned char * const result, const unsigned char * c1, con
    n: The length of key
    pubkey: The public key in base 256 format. Set this to NULL if you don't want to check whether key corresponds to pubkey.
    m: The length of the public key (33 for compressed, 65 for uncompressed)
+   type: The type of the private key, i.e. the prefix code (128 for Bitcoin, 213 for Bitmark, ...) 
    Return the offset of the result, i.e. the pointer to the actual result is result+offset */
-int privkey_to_bc_format (char * const result, const unsigned char * key, const size_t n, const unsigned char * pubkey, const size_t m);
+int privkey_to_bc_format (char * const result, const unsigned char * key, const size_t n, const unsigned char * pubkey, const size_t m, const unsigned char type);
 
 /* Get the Bitcoin address in the standard Bitcoin base 58 format from the public key in base 256 format, and put the result in result.
    result: The result that is to contain the address in the standard Bitcoin base 58 format

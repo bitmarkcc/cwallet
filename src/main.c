@@ -25,6 +25,7 @@ int main (int argc, char ** argv) {
   unsigned char qflag = 0;
   unsigned char oflag = 0;
   unsigned char tflag = 0;
+  unsigned char Tflag = 0;
   unsigned char rflag = 0;
   unsigned char pflag = 0;
   unsigned char kflag = 0;
@@ -36,6 +37,7 @@ int main (int argc, char ** argv) {
   char * avalue = 0;
   char * ovalue = 0;
   char * tvalue = 0;
+  char * Tvalue = 0;
   char * pvalue = 0;
   char * kvalue = 0;
   int index;
@@ -43,7 +45,7 @@ int main (int argc, char ** argv) {
      
   opterr = 0;
 
-  while ((c = getopt (argc, argv, "w:d:a:qo:t:rp:k:eus")) != -1) {
+  while ((c = getopt (argc, argv, "w:d:a:qo:t:T:rp:k:eus")) != -1) {
     switch (c) {
     case 'w':
       wflag = 1;
@@ -68,6 +70,10 @@ int main (int argc, char ** argv) {
       tflag = 1;
       tvalue = optarg;
       break;
+    case 'T':
+	Tflag = 1;
+	Tvalue = optarg;
+	break;
     case 'r':
       rflag = 1;
       break;
@@ -112,7 +118,7 @@ int main (int argc, char ** argv) {
       eflag = 1;
     }
     char ** generate_result = (char **)malloc(sizeof(char **)*2);
-    ret = generate_key(generate_result,qflag,rflag,eflag,uflag,sflag,dvalue,ovalue,tvalue,pvalue,kvalue);
+    ret = generate_key(generate_result,qflag,rflag,eflag,uflag,sflag,dvalue,ovalue,tvalue,Tvalue,pvalue,kvalue);
     if (ret == 0) {
       fprintf(stdout,"%s\t%s\n",generate_result[0],generate_result[1]);
       fflush(stdout);
@@ -134,6 +140,13 @@ int main (int argc, char ** argv) {
   }
   else {
     tvalue_uchar = (unsigned char)(atoi(tvalue));
+  }
+  unsigned char Tvalue_uchar = 0;
+  if (Tflag==0) {
+      Tvalue_uchar = 128;
+  }
+  else {
+      Tvalue_uchar = (unsigned char)(atoi(Tvalue));
   }
   if (uflag==1) {
     publen = 65;
@@ -307,7 +320,7 @@ int main (int argc, char ** argv) {
       privkey[i] = malloc(privlen);
       memcpy(privkey[i],pcurchar,privlen);
       privkey_bc[i] = malloc(53);
-      ret2 = privkey_to_bc_format(privkey_bc[i],privkey[i],privlen,pubkey[0],publen);
+      ret2 = privkey_to_bc_format(privkey_bc[i],privkey[i],privlen,pubkey[0],publen,Tvalue_uchar);
       if (ret2 == -1) {
 	strcat(output,"(ERROR)\n");
 	fprintf(stdout,"%s",output);

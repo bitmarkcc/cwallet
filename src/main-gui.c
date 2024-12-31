@@ -371,11 +371,44 @@ int install_pack (int argc, char **argv, Data * data) {
     rflag = 1;
   }
 
+  char * configdir = (char *)malloc(strlen(homedir)+50);
+  strcpy(configdir,homedir);
+  strcat(configdir,"/.config/cwallet");
+  char * tvaluefile = (char *)malloc(strlen(configdir)+50);
+  strcpy(tvaluefile,configdir);
+  strcat(tvaluefile,"/addrtype");
+  char * Tvaluefile = (char *)malloc(strlen(configdir)+50);
+  strcpy(Tvaluefile,configdir);
+  strcat(Tvaluefile,"/privkeytype");
+  free(configdir);
+  char tvalue [4];
+  char Tvalue [4];
+  FILE * f = fopen(tvaluefile,"r");
+  if (f) {
+      fgets(tvalue,4,f);
+      fclose(f);
+  }
+  else {
+      strcpy(tvalue,"0");
+  }
+  //fclose(f);
+  f = fopen(Tvaluefile,"r");
+  if (f) {
+      fgets(Tvalue,4,f);
+      fclose(f);
+  }
+  else {
+      strcpy(Tvalue,"128");
+  }
+  //fclose(f);
+  free(tvaluefile);
+  free(Tvaluefile);
+
   char ** generate_result = (char **)malloc(sizeof(char *)*2);
-  ret = generate_key(generate_result,1,rflag,eflag,0,sflag,outdir,0,"85",passphrase,privkey);
+  ret = generate_key(generate_result,1,rflag,eflag,0,sflag,outdir,0,tvalue,Tvalue,passphrase,privkey);
   if (ret==0) {
     char * address = generate_result[0];
-    fprintf(stdout,"Saved to %s.pdf\n",address);
+    fprintf(stdout,"Saved to %s.pdf\n",address,configdir);
     fflush(stdout);
   }
   else {
