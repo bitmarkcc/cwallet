@@ -496,7 +496,7 @@ int gui_status (int argc, char ** argv, Data * data) {
   logo = (GtkImage *)gtk_image_new_from_file(str);
   gtk_table_attach(GTK_TABLE(table2),(GtkWidget *)logo,1,2,1,2,GTK_EXPAND|GTK_FILL,GTK_EXPAND|GTK_FILL,5,5);
 
-  message = (GtkLabel *)gtk_label_new("Generate a PDF for your Bitmark paper wallet.\nAll fields are optional except the output directory.");
+  message = (GtkLabel *)gtk_label_new("Generate a PDF for your paper wallet.\nAll fields are optional except the output directory.");
   gtk_label_set_justify((GtkLabel *)message,GTK_JUSTIFY_CENTER);
   gtk_widget_set_size_request((GtkWidget *)message,-1,60);
   gtk_misc_set_alignment((GtkMisc *)message,0.5,1);
