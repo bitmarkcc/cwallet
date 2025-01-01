@@ -4,7 +4,18 @@ AC_PROG_CC
 AM_PROG_CC_C_O
 AC_CONFIG_HEADERS([config.h])
 
-PKG_CHECK_MODULES([GTK2],[gtk+-2.0])
+AC_ARG_ENABLE([gui],
+  [AS_HELP_STRING([--enable-gui],
+  [enable GUI (default is yes)])],
+  [enable_gui=$enableval],
+  [enable_gui=yes])	
+
+
+if test x$enable_gui != xno; then
+   PKG_CHECK_MODULES([GTK2],[gtk+-2.0])
+fi
+
+AM_CONDITIONAL([ENABLE_GUI],[test x$enable_gui == xyes])
 
 AC_CHECK_HEADERS([db.h] [openssl/bn.h] [openssl/sha.h] [openssl/ripemd.h] [openssl/ec.h] [openssl/obj_mac.h], ,AC_MSG_ERROR([*** Some required headers not found]))
 
