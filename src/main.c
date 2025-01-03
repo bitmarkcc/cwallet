@@ -1,4 +1,5 @@
 #include <cwallet.h>
+#include <ctype.h>
 
 /* Generate an address-private key pair or get one from a bitcoind wallet.dat
    -w [wallet file]

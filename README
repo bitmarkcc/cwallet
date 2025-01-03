@@ -35,7 +35,8 @@ Options for command line version:
 -a <address> (if not specified, all addresses are listed)
 -q (produce pdf file of private key QR coded)
 -o <output file> (file to save the pdf with QR encoding, defaults to <output directory>/<address>.pdf)
--t <address type> (Integer specifying type of address prefix code. For example, Bitcoin uses 0, Namecoin uses 52)
+-t <address type> (Integer specifying address prefix code. For example, Bitcoin uses 0, Namecoin uses 52)
+-T <privkey type> (Integer specifying private key prefix code. For example, Bitcoin uses 128, Bitmark uses 213)
 -r (generate a random private key)
 -p <passphrase>
 -k <private key>
